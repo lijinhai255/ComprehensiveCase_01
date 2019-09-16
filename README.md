@@ -92,4 +92,51 @@ registerServiceWorker();
 ````
 
 ### 引入redux
+````javaScript
+import React from 'react';
+import ReactDOM from 'react-dom';
+import { HashRouter, Route } from 'react-router-dom';
+// 引入 Provider
+import { Provider } from 'react-redux';
+import App from './App';
+// 引入store
+import { store, dealFn } from './store';
+import { addLesson} from "./action"
+import './index.css';
+
+ReactDOM.render(
+    <Provider store={store}>
+        <HashRouter>
+            {/*渲染高阶组件*/}
+            <Route path="/" component={dealFn(App)}></Route>
+        </HashRouter>
+    </Provider>
+    , document.getElementById('root'));
+
+````
+> store.js
+````javaScript
+//创建store
+import { createStore} from "redux"
+//引入react-redux
+import { connect } from "react-redux"
+//引入 reducer
+import { reducer} from "../reducer"
+
+//创建store
+export let store = createStore(reducer)
+
+//定义mapStateToProps
+function mapStateToProps(state){
+    return {state}
+}
+//定义mapDispatchToProps
+function mapDispatchToProps(dispatch){
+    return {dispatch}
+}
+//定义connect方法 
+
+export let dealFn = connect(mapStateToProps,mapDispatchToProps)
+
+````
 
