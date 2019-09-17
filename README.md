@@ -140,3 +140,24 @@ export let dealFn = connect(mapStateToProps,mapDispatchToProps)
 
 ````
 
+> 计算求和
+````JavaScript
+// 遍历商品，求和并返回
+		return this.props.state.lessons
+			// 将数据对象中的price返回成一个新数组
+			.map(item => +item.price)
+			// 求和
+			.reduce((res, item) => res + item);
+````
+
+### 请求代理
+````JavaScript
+ //定义代理对象
+let proxyObject = {
+    target: 'http://localhost:3010/'
+}
+ proxy: {
+        '/data/lesson/home': proxyObject,
+        '/data/lesson/search': proxyObject
+    },
+````

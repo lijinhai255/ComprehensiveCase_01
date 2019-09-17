@@ -35,7 +35,7 @@ export default class Header extends Component {
         // 引入数据
         let { isShow } = this.state;
         return (
-            <div className="ickt-header">
+            <div className="header">
                 <span className="header-left" onClick={e => this.setState({ isShow: true })}>搜索</span>
                 <Link className="title" to="/">授课网站</Link>
                 <span className="header-right">登录</span>

@@ -8,7 +8,10 @@ const paths = require('./paths');
 
 const protocol = process.env.HTTPS === 'true' ? 'https' : 'http';
 const host = process.env.HOST || '0.0.0.0';
-
+ //定义代理对象
+let proxyObject = {
+    target: 'http://localhost:3010/'
+}
 module.exports = function(proxy, allowedHost) {
   return {
     // WebpackDevServer 2.4.3 introduced a security fix that prevents remote
@@ -80,7 +83,12 @@ module.exports = function(proxy, allowedHost) {
       disableDotRule: true,
     },
     public: allowedHost,
-    proxy,
+    //定义请求代理
+    // ickt 定义请求代理的
+    proxy: {
+        '/data/lesson/home': proxyObject,
+        '/data/lesson/search': proxyObject
+    },
     before(app) {
       // This lets us open files from the runtime error overlay.
       app.use(errorOverlayMiddleware());
